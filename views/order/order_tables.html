@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="favicon.ico"> <link href="/static/css/bootstrap.min.css?v=3.3.5" rel="stylesheet">
+    <link href="/static/css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
+    <!-- Data Tables -->
+    <link href="/static/css/plugins/dataTables/dataTables.bootstrap.css" rel="stylesheet">
+
+    <link href="/static/css/animate.min.css" rel="stylesheet">
+    <link href="/static/css/style.min.css?v=4.0.0" rel="stylesheet"><base target="_blank">
+
+</head>
+
+<body class="gray-bg">
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <button type="button" class="btn btn-w-m btn-primary" ><a href="/addorder">添加新工单</a></button>
+                        <div class="ibox-tools">
+                            <a class="collapse-link">
+                                <i class="fa fa-chevron-up"></i>
+                            </a>
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="table_data_tables.html#">
+                                <i class="fa fa-wrench"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-user">
+                                <li><a href="table_data_tables.html#">选项1</a>
+                                </li>
+                                <li><a href="table_data_tables.html#">选项2</a>
+                                </li>
+                            </ul>
+                            <a class="close-link">
+                                <i class="fa fa-times"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+
+                        <table class="table table-striped table-bordered table-hover dataTables-example">
+                            <thead>
+                                <tr>
+                                    <th>编号</th>
+                                    <th>订单ID</th>
+                                    <th>姓名</th>
+                                    <th>车型</th>
+                                    <th>车牌号</th>
+                                    <th>入店时间</th>
+                                    <th>离店时间</th>
+                                    <th>商品</th>
+                                    <th>金额</th>
+                                    <th>是否开票</th>
+                                    <th>是否关闭</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{/*{{range .Customer}}*/}}
+                                {{/*<tr class="gradeX">*/}}
+                                    {{/*<td>1<td/>*/}}
+                                    {{/*<td>{{.Id}}<td/>*/}}
+                                    {{/*<td>{{.Name}}<td/>*/}}
+                                    {{/*<td>{{.Carid}}<td/>*/}}
+                                    {{/*<td>{{.Intime}}<td/>*/}}
+                                    {{/*<td>{{.Outtime}}<td/>*/}}
+                                    {{/*<td>{{.GoodsId}}<td/>*/}}
+                                    {{/*<td>{{.Money}}<td/>*/}}
+                                    {{/*<td>{{.Ticket}}<td/>*/}}
+                                    {{/*<td>{{.Closer}}<td/>*/}}
+                                {{/*</tr>*/}}
+                                {{/*{{end}}*/}}
+                                <tr class="gradeX">
+                                    <td>1</td>
+                                    <td>LN000012</td>
+                                    <td>独孤求败</td>
+                                    <td class="center">长安福特</td>
+                                    <td class="center">赣BHC754</td>
+                                    <td>2019年1月2日12:16</td>
+                                    <td>2019年1月4日12:16</td>
+                                    <td>喷漆，洗车</td>
+                                    <td class="center">450</td>
+                                    <td class="center">否</td>
+                                    <td class="center"><button class="btn btn-danger btn-circle" type="button"><i class="fa fa-times"></i></button></td>
+                                </tr>
+                                <tr class="gradeC">
+                                    <td>1</td>
+                                    <td>LN000023</td>
+                                    <td>西门吹雪</td>
+                                    <td class="center">一汽大众</td>
+                                    <td class="center">赣B645TC</td>
+                                    <td>2019年1月1日10:16</td>
+                                    <td>2019年1月4日19:08</td>
+                                    <td>换胎</td>
+                                    <td class="center">300</td>
+                                    <td class="center">否</td>
+                                    <td class="center"><button class="btn btn-info btn-circle" type="button"><i class="fa fa-check"></i></button></td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th>编号</th>
+                                    <th>订单ID</th>
+                                    <th>姓名</th>
+                                    <th>车型</th>
+                                    <th>车牌号</th>
+                                    <th>入店时间</th>
+                                    <th>离店时间</th>
+                                    <th>商品</th>
+                                    <th>金额</th>
+                                    <th>是否开票</th>
+                                    <th>是否关闭</th>
+                                </tr>
+                            </tfoot>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <script src="/static/js/plugins/jeditable/jquery.jeditable.js"></script>
+    <script src="/static/js/plugins/dataTables/jquery.dataTables.js"></script>
+    <script src="/static/js/plugins/dataTables/dataTables.bootstrap.js"></script>
+    <script src="/static/js/content.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.dataTables-example').dataTable();
+
+            /* Init DataTables */
+            var oTable = $('#editable').dataTable();
+
+            /* Apply the jEditable handlers to the table */
+            oTable.$('td').editable('../example_ajax.php', {
+                "callback": function (sValue, y) {
+                    var aPos = oTable.fnGetPosition(this);
+                    oTable.fnUpdate(sValue, aPos[0], aPos[1]);
+                },
+                "submitdata": function (value, settings) {
+                    return {
+                        "row_id": this.parentNode.getAttribute('id'),
+                        "column": oTable.fnGetPosition(this)[2]
+                    };
+                },
+
+                "width": "90%",
+                "height": "100%"
+            });
+
+
+        });
+
+        function fnClickAddRow() {
+            $('#editable').dataTable().fnAddData([
+                "Custom row",
+                "New row",
+                "New row",
+                "New row",
+                "New row"]);
+
+        }
+    </script>
+    <script type="text/javascript" src="http://tajs.qq.com/stats?sId=9051096" charset="UTF-8"></script>
+
+</body>
+
+</html>
