@@ -39,7 +39,7 @@ func RegisterDB(){
 	//	os.Create(_DB_NAME)
 	//}
 	orm.Debug = true
-	orm.RegisterModel(new(Customer),new(Goods))
+	orm.RegisterModel(new(Customer),new(Goods),new(EroLog),new(Erp))
 	orm.RegisterDataBase("default", "mysql", "root:qq1005521@tcp(127.0.0.1:3306)/garage?charset=utf8", 30)
 	//err := orm.RunSyncdb("default", true, true)
 	err := orm.RunSyncdb("default", false, true)
@@ -53,6 +53,40 @@ func RegisterDB(){
 	//orm.RegisterDataBase("default",_SQLITE3_DRVIER,_DB_NAME,10)
 
 }
+
+//TODO 联表查询
+func (c *Customer) FindAllDockInfo() ([]*Customer) {
+
+	var dock []*Customer
+	o := orm.NewOrm()
+	o.QueryTable("customer").RelatedSel().All(&dock)
+
+	//common.PanicIf(err)
+	return dock
+
+}
+
+//TODO 查询信息
+func (c *Customer) FindDockerInfo(table string,filer string,) ([]*Customer) {
+	var dock []*Customer
+	o := orm.NewOrm()
+	o.QueryTable(table).Filter("IpDocker",filer).All(&dock,"Node")
+	return dock
+}
+
+//TODO 更新数据表
+
+
+
+
+//TODO 保存数据表
+func (this *Customer) SaveGroupInfo() error {
+
+	_, err := orm.NewOrm().Insert(this)
+
+	return err
+}
+
 
 
 

@@ -17,7 +17,14 @@ type AddorderController struct {
 
 
 func (c *OrderController) Get() {
+	beego.ReadFromRequest(&c.Controller)
+
+	OrderInfo := &models.Customer{}
+	orders:= OrderInfo.FindAllDockInfo()
+	fmt.Println(orders)
+	c.Data["orders"] = orders
 	c.TplName = "order/order_tables.html"
+	c.Render()
 }
 
 func (c *AddorderController) Get() {

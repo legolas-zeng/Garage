@@ -22,23 +22,6 @@
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
                         <button type="button" class="btn btn-w-m btn-primary" ><a href="/addorder">添加新工单</a></button>
-                        <div class="ibox-tools">
-                            <a class="collapse-link">
-                                <i class="fa fa-chevron-up"></i>
-                            </a>
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="table_data_tables.html#">
-                                <i class="fa fa-wrench"></i>
-                            </a>
-                            <ul class="dropdown-menu dropdown-user">
-                                <li><a href="table_data_tables.html#">选项1</a>
-                                </li>
-                                <li><a href="table_data_tables.html#">选项2</a>
-                                </li>
-                            </ul>
-                            <a class="close-link">
-                                <i class="fa fa-times"></i>
-                            </a>
-                        </div>
                     </div>
                     <div class="ibox-content">
 
@@ -58,7 +41,24 @@
                                     <th>是否关闭</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody id="zoneinfo">
+                            {{range $index,$element :=.orders}}
+                            <tr>
+                                <td align="center">{{$index}}</td>
+                                <td align="center">{{$element.Id}}</td>
+                                <td align="center">{{$element.Name}}</td>
+                                <td align="center">{{$element.Arctic}}</td>
+                                <td align="center">{{$element.Carid}}</td>
+                                <td align="center">{{$element.Intime}}</td>
+                                <td align="center">{{$element.Outtime}}</td>
+                                <td align="center">{{$element.GoodsId}}</td>
+                                <td align="center">{{$element.Money}}</td>
+                                <td align="center" ><div id="counter"><button type="button" class="btn btn-info btn-xs" >正常</button></div></td>
+                                <td align="center" ><div id="counter"><button type="button" class="btn btn-info btn-xs" >正常</button></div></td>
+                            </tr>
+                            {{end}}
+                            </tbody>
+                            {{/*<tbody>*/}}
                                 {{/*{{range .Customer}}*/}}
                                 {{/*<tr class="gradeX">*/}}
                                     {{/*<td>1<td/>*/}}
@@ -73,33 +73,33 @@
                                     {{/*<td>{{.Closer}}<td/>*/}}
                                 {{/*</tr>*/}}
                                 {{/*{{end}}*/}}
-                                <tr class="gradeX">
-                                    <td>1</td>
-                                    <td>LN000012</td>
-                                    <td>独孤求败</td>
-                                    <td class="center">长安福特</td>
-                                    <td class="center">赣BHC754</td>
-                                    <td>2019年1月2日12:16</td>
-                                    <td>2019年1月4日12:16</td>
-                                    <td>喷漆，洗车</td>
-                                    <td class="center">450</td>
-                                    <td class="center">否</td>
-                                    <td class="center"><button class="btn btn-danger btn-circle" type="button"><i class="fa fa-times"></i></button></td>
-                                </tr>
-                                <tr class="gradeC">
-                                    <td>1</td>
-                                    <td>LN000023</td>
-                                    <td>西门吹雪</td>
-                                    <td class="center">一汽大众</td>
-                                    <td class="center">赣B645TC</td>
-                                    <td>2019年1月1日10:16</td>
-                                    <td>2019年1月4日19:08</td>
-                                    <td>换胎</td>
-                                    <td class="center">300</td>
-                                    <td class="center">否</td>
-                                    <td class="center"><button class="btn btn-info btn-circle" type="button"><i class="fa fa-check"></i></button></td>
-                                </tr>
-                            </tbody>
+                                {{/*<tr class="gradeX">*/}}
+                                    {{/*<td>1</td>*/}}
+                                    {{/*<td>LN000012</td>*/}}
+                                    {{/*<td>独孤求败</td>*/}}
+                                    {{/*<td class="center">长安福特</td>*/}}
+                                    {{/*<td class="center">赣BHC754</td>*/}}
+                                    {{/*<td>2019年1月2日12:16</td>*/}}
+                                    {{/*<td>2019年1月4日12:16</td>*/}}
+                                    {{/*<td>喷漆，洗车</td>*/}}
+                                    {{/*<td class="center">450</td>*/}}
+                                    {{/*<td class="center">否</td>*/}}
+                                    {{/*<td class="center"><button class="btn btn-danger btn-circle" type="button"><i class="fa fa-times"></i></button></td>*/}}
+                                {{/*</tr>*/}}
+                                {{/*<tr class="gradeC">*/}}
+                                    {{/*<td>1</td>*/}}
+                                    {{/*<td>LN000023</td>*/}}
+                                    {{/*<td>西门吹雪</td>*/}}
+                                    {{/*<td class="center">一汽大众</td>*/}}
+                                    {{/*<td class="center">赣B645TC</td>*/}}
+                                    {{/*<td>2019年1月1日10:16</td>*/}}
+                                    {{/*<td>2019年1月4日19:08</td>*/}}
+                                    {{/*<td>换胎</td>*/}}
+                                    {{/*<td class="center">300</td>*/}}
+                                    {{/*<td class="center">否</td>*/}}
+                                    {{/*<td class="center"><button class="btn btn-info btn-circle" type="button"><i class="fa fa-check"></i></button></td>*/}}
+                                {{/*</tr>*/}}
+                            {{/*</tbody>*/}}
                             <tfoot>
                                 <tr>
                                     <th>编号</th>
