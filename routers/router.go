@@ -11,4 +11,13 @@ func init() {
     beego.Router("/order", &controllers.OrderController{})
     beego.Router("/addorder", &controllers.AddorderController{})
     beego.Router("/add_order_api", &controllers.AddorderController{},"POST:AddOrderApi")
+
+    erp := beego.NewNamespace("/erp",
+    	beego.NSRouter("/stock",&controllers.ErpController{},"*:Get"),
+
+		beego.NSInclude(
+			&controllers.ErpController{},
+    	),
+	)
+	beego.AddNamespace(erp)
 }
